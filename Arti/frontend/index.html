@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Circular Agriculture Platform</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="app-container">
+
+        <!-- Welcome Screen -->
+        <section id="welcome-screen" class="screen active">
+
+            <header class="top-bar">
+                <div class="brand">
+                    <div class="brand-logo">✦</div>
+                    <span id="app-name">Your Platform Name</span>
+                </div>
+
+                <div class="top-bar-label">
+                    Circular Agriculture
+                </div>
+            </header>
+
+            <div class="welcome-content">
+
+                <div class="welcome-text">
+
+                    <span class="eyebrow">
+                        CIRCULAR AGRICULTURE PLATFORM
+                    </span>
+
+                    <h1 id="welcome-heading">
+                        Growing a better future, together.
+                    </h1>
+
+                    <p id="welcome-description">
+                        Connect farmers and businesses to reduce waste,
+                        share resources, and build a more sustainable
+                        agricultural ecosystem.
+                    </p>
+
+                    <button id="get-started-btn" class="primary-button">
+                        Get Started
+                        <span class="button-arrow">→</span>
+                    </button>
+
+                    <div class="welcome-note">
+                        <span class="note-icon">✓</span>
+                        Simple, sustainable, and community-driven
+                    </div>
+
+                </div>
+
+                <div class="welcome-visual">
+
+                    <div class="visual-circle circle-one"></div>
+                    <div class="visual-circle circle-two"></div>
+
+                    <div class="plant-illustration">
+
+                        <div class="plant-stem"></div>
+
+                        <div class="leaf leaf-left"></div>
+                        <div class="leaf leaf-right"></div>
+                        <div class="leaf leaf-top-left"></div>
+                        <div class="leaf leaf-top-right"></div>
+
+                        <div class="plant-ground"></div>
+
+                    </div>
+
+                    <div class="visual-card card-top">
+                        <span class="mini-icon">♻</span>
+                        <div>
+                            <strong>Reduce Waste</strong>
+                            <small>Reuse valuable resources</small>
+                        </div>
+                    </div>
+
+                    <div class="visual-card card-bottom">
+                        <span class="mini-icon">🌱</span>
+                        <div>
+                            <strong>Grow Together</strong>
+                            <small>Connect local communities</small>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <footer class="welcome-footer">
+                <span>Designed for farmers, businesses, and a greener future.</span>
+                <span class="footer-dot">●</span>
+                <span>Simple. Connected. Sustainable.</span>
+            </footer>
+
+        </section>
+
+
+        <!-- Role Selection Screen -->
+<section id="role-screen" class="screen">
+
+    <header class="top-bar">
+        <div class="brand">
+            <div class="brand-logo">✦</div>
+            <span id="role-app-name">Your Platform Name</span>
+        </div>
+
+        <button id="back-to-welcome" class="back-button">
+            ← Back
+        </button>
+    </header>
+
+    <div class="role-content">
+
+        <div class="role-heading">
+            <span class="eyebrow">GET STARTED</span>
+
+            <h1>How would you like to continue?</h1>
+
+            <p>
+                Choose the option that best describes you.
+                You can create an account or continue with an existing one.
+            </p>
+        </div>
+
+        <div class="role-cards">
+
+            <button class="role-card" data-role="farmer">
+
+                <div class="role-icon">🌾</div>
+
+                <div class="role-card-text">
+                    <h2>I'm a Farmer</h2>
+
+                    <p>
+                        Manage farm information, crops, soil,
+                        resources, and available produce.
+                    </p>
+
+                    <span class="role-link">
+                        Continue as Farmer →
+                    </span>
+                </div>
+
+            </button>
+
+            <button class="role-card" data-role="business">
+
+                <div class="role-icon">🏢</div>
+
+                <div class="role-card-text">
+                    <h2>I'm a Business</h2>
+
+                    <p>
+                        Connect with farmers, find produce,
+                        manage surplus, and reduce waste.
+                    </p>
+
+                    <span class="role-link">
+                        Continue as Business →
+                    </span>
+                </div>
+
+            </button>
+
+        </div>
+
+        <p id="role-message" class="role-message" aria-live="polite"></p>
+
+    </div>
+
+</section>
+<!-- Authentication Screen -->
+<section id="auth-screen" class="screen">
+
+    <header class="top-bar">
+        <div class="brand">
+            <div class="brand-logo">✦</div>
+            <span id="auth-app-name">Your Platform Name</span>
+        </div>
+
+        <button id="back-to-role" class="back-button">
+            ← Change Role
+        </button>
+    </header>
+
+    <div class="auth-layout">
+
+        <!-- Left Information Panel -->
+        <div class="auth-intro">
+
+            <span class="eyebrow">WELCOME BACK</span>
+
+            <h1 id="auth-title">
+                Continue your journey with us.
+            </h1>
+
+            <p id="auth-description">
+                Sign in to manage your information and stay connected
+                with the circular agriculture community.
+            </p>
+
+            <div class="auth-benefits">
+
+                <div class="benefit-item">
+                    <span class="benefit-icon">✓</span>
+                    <span>Save your information securely</span>
+                </div>
+
+                <div class="benefit-item">
+                    <span class="benefit-icon">✓</span>
+                    <span>Access your account anytime</span>
+                </div>
+
+                <div class="benefit-item">
+                    <span class="benefit-icon">✓</span>
+                    <span>Connect with the right community</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Authentication Card -->
+        <div class="auth-card">
+
+            <div class="auth-card-heading">
+                <h2 id="auth-role-heading">Farmer Account</h2>
+
+                <p>
+                    Login to your account or create a new one.
+                </p>
+            </div>
+
+            <!-- Login and Signup Tabs -->
+            <div class="auth-tabs">
+
+                <button
+                    id="login-tab"
+                    class="auth-tab active"
+                    type="button">
+                    Login
+                </button>
+
+                <button
+                    id="signup-tab"
+                    class="auth-tab"
+                    type="button">
+                    Create Account
+                </button>
+
+            </div>
+
+
+            <!-- Login Form -->
+            <form id="login-form" class="auth-form">
+
+                <div class="form-group">
+                    <label for="login-email">Email Address</label>
+
+                    <input
+                        type="email"
+                        id="login-email"
+                        placeholder="Enter your email"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+
+                    <input
+                        type="password"
+                        id="login-password"
+                        placeholder="Enter your password"
+                        required>
+                </div>
+
+                <div class="form-options">
+
+                    <label class="remember-option">
+                        <input type="checkbox">
+                        <span>Remember me</span>
+                    </label>
+
+                    <button
+                        type="button"
+                        class="forgot-password">
+                        Forgot password?
+                    </button>
+
+                </div>
+
+                <button type="submit" class="primary-button form-button">
+                    Login
+                    <span class="button-arrow">→</span>
+                </button>
+
+                <div class="or-divider">
+                    <span>or continue with</span>
+                </div>
+
+                <button
+                    type="button"
+                    id="google-login"
+                    class="google-button"
+                    onclick="signInWithGoogle('login')">
+                    <span class="google-symbol">G</span>
+                    Continue with Google
+                </button>
+
+            </form>
+
+
+            <!-- Signup Form -->
+            <form id="signup-form" class="auth-form hidden">
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="signup-name">Full Name</label>
+
+                        <input
+                            type="text"
+                            id="signup-name"
+                            placeholder="Enter your name"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signup-phone">Phone Number</label>
+
+                        <input
+                            type="tel"
+                            id="signup-phone"
+                            placeholder="Enter phone number"
+                            required>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="signup-email">Email Address</label>
+
+                    <input
+                        type="email"
+                        id="signup-email"
+                        placeholder="Enter your email"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="signup-password">Create Password</label>
+
+                    <input
+                        type="password"
+                        id="signup-password"
+                        placeholder="Create a password"
+                        required>
+                </div>
+
+
+                <!-- Farmer-specific Fields -->
+                <div id="farmer-fields" class="role-specific-fields hidden">
+
+                    <div class="form-section-title">
+                        Farm Information
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label for="farm-location">Location</label>
+
+                            <input
+                                type="text"
+                                id="farm-location"
+                                placeholder="Farm location">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="farm-district">District</label>
+
+                            <input
+                                type="text"
+                                id="farm-district"
+                                placeholder="District">
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label for="farm-size">Farm Size</label>
+
+                            <input
+                                type="number"
+                                id="farm-size"
+                                placeholder="Example: 2.5">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="farm-unit">Unit</label>
+
+                            <select id="farm-unit">
+                                <option value="">Select unit</option>
+                                <option value="acre">Acre</option>
+                                <option value="hectare">Hectare</option>
+                                <option value="bigha">Bigha</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="farming-type">Farming Type</label>
+
+                        <select id="farming-type">
+                            <option value="">Select farming type</option>
+                            <option value="organic">Organic Farming</option>
+                            <option value="mixed">Mixed Farming</option>
+                            <option value="subsistence">Subsistence Farming</option>
+                            <option value="commercial">Commercial Farming</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                </div>
+
+
+                <!-- Business-specific Fields -->
+                <div id="business-fields" class="role-specific-fields hidden">
+
+                    <div class="form-section-title">
+                        Business Information
+                    </div>
+
+                    <div class="form-group">
+                        <label for="business-name">Business Name</label>
+
+                        <input
+                            type="text"
+                            id="business-name"
+                            placeholder="Enter business name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="business-type">Business Type</label>
+
+                        <select id="business-type">
+                            <option value="">Select business type</option>
+                            <option value="restaurant">Restaurant</option>
+                            <option value="hotel">Hotel</option>
+                            <option value="retailer">Retailer</option>
+                            <option value="wholesaler">Wholesaler</option>
+                            <option value="food-processor">Food Processor</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label for="business-location">Location</label>
+
+                            <input
+                                type="text"
+                                id="business-location"
+                                placeholder="Business location">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="business-district">District</label>
+
+                            <input
+                                type="text"
+                                id="business-district"
+                                placeholder="District">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="produce-required">
+                            Commonly Required Produce
+                        </label>
+
+                        <textarea
+                            id="produce-required"
+                            rows="3"
+                            placeholder="Example: Rice, vegetables, fruits"></textarea>
+                    </div>
+
+                </div>
+
+
+                <label class="terms-option">
+                    <input type="checkbox" required>
+
+                    <span>
+                        I agree to the platform's terms and conditions.
+                    </span>
+                </label>
+
+                <button type="submit" class="primary-button form-button">
+                    Create Account
+                    <span class="button-arrow">→</span>
+                </button>
+
+                <div class="or-divider">
+                    <span>or continue with</span>
+                </div>
+
+                <button
+                    type="button"
+                    id="google-signup"
+                    class="google-button"
+                    onclick="signInWithGoogle('signup')">
+                    <span class="google-symbol">G</span>
+                    Sign up with Google
+                </button>
+
+            </form>
+
+            <p id="auth-message" class="auth-message" aria-live="polite"></p>
+
+        </div>
+
+    </div>
+
+</section>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Profile Screen -->
+<section id="profile-screen" class="screen">
+
+    <header class="top-bar">
+        <div class="brand">
+            <div class="brand-logo">✦</div>
+            <span id="profile-app-name">Your Platform Name</span>
+        </div>
+
+        <button id="logout-button" class="back-button" type="button">
+            Logout
+        </button>
+    </header>
+
+
+    <div class="profile-content">
+
+        <div class="profile-heading">
+            <span class="eyebrow">MY PROFILE</span>
+
+            <h1>Welcome, <span id="profile-name">User</span></h1>
+
+            <p>
+                Your saved information is displayed below.
+            </p>
+        </div>
+
+
+        <div class="profile-card">
+
+            <div class="profile-avatar" id="profile-avatar">
+                U
+            </div>
+
+            <div class="profile-main-info">
+                <h2 id="profile-display-name">User</h2>
+                <p id="profile-display-email">Email address</p>
+                <span class="profile-role-badge" id="profile-role">
+                    User
+                </span>
+            </div>
+
+        </div>
+
+
+        <div class="profile-details-card">
+
+            <h2>Account Information</h2>
+
+            <div class="profile-detail-row">
+                <span>Full Name</span>
+                <strong id="profile-full-name">—</strong>
+            </div>
+
+            <div class="profile-detail-row">
+                <span>Email</span>
+                <strong id="profile-email">—</strong>
+            </div>
+
+            <div class="profile-detail-row">
+                <span>Phone Number</span>
+                <strong id="profile-phone">—</strong>
+            </div>
+
+        </div>
+
+
+        <div class="profile-details-card">
+
+            <h2 id="profile-specific-title">
+                Business Information
+            </h2>
+
+            <div id="profile-specific-details"></div>
+
+        </div>
+
+
+        <p id="profile-message" class="auth-message" aria-live="polite"></p>
+
+    </div>
+
+</section>
+    </main>
+
+    <script src="script.js"></script>
+<!-- Firebase Google Authentication and Firestore -->
+<script type="module">
+    import {
+        initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+    import {
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+    import {
+        getFirestore,
+        doc,
+        setDoc,
+        getDoc,
+        serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDXzhai4j4EsbqtjEUtkEOX6Z5f9sUMSVo",
+        authDomain: "circular-agriculture.firebaseapp.com",
+        projectId: "circular-agriculture",
+        storageBucket: "circular-agriculture.firebasestorage.app",
+        messagingSenderId: "1097098854602",
+        appId: "1:1097098854602:web:8d275c106f83676ccf3433",
+        measurementId: "G-S8YFHSBPBE"
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const googleProvider = new GoogleAuthProvider();
+
+
+    window.signInWithGoogle = async function (mode = "login") {
+        try {
+            const result = await signInWithPopup(auth, googleProvider);
+
+            const user = result.user;
+
+            const role = window.selectedRole || "unknown";
+
+
+            /*
+             * LOGIN MODE
+             * Load the existing profile from Firestore.
+             */
+
+            if (mode === "login") {
+                const userDocument = await getDoc(
+                    doc(db, "users", user.uid)
+                );
+
+                if (userDocument.exists()) {
+    const savedProfile = userDocument.data();
+
+    // Use the role saved in Firestore
+    window.selectedRole = savedProfile.role;
+
+    // Display the saved profile screen
+    displaySavedProfile(savedProfile, user);
+
+    console.log("Loaded saved profile:", savedProfile);
+
+} else {
+    document.getElementById("auth-message").textContent =
+        "Google login successful. Please create your profile first.";
+}
+
+                return;
+            }
+
+
+            /*
+             * SIGNUP MODE
+             * Collect common profile information.
+             */
+
+            const fullName =
+                document.getElementById("signup-name").value.trim();
+
+            const phone =
+                document.getElementById("signup-phone").value.trim();
+
+            const email =
+                document.getElementById("signup-email").value.trim();
+
+
+            /*
+             * Collect farmer-specific information.
+             */
+
+            const farmerProfile = {
+                farmLocation:
+                    document.getElementById("farm-location").value.trim(),
+
+                farmDistrict:
+                    document.getElementById("farm-district").value.trim(),
+
+                farmSize:
+                    document.getElementById("farm-size").value,
+
+                farmUnit:
+                    document.getElementById("farm-unit").value,
+
+                farmingType:
+                    document.getElementById("farming-type").value
+            };
+
+
+            /*
+             * Collect business-specific information.
+             */
+
+            const businessProfile = {
+                businessName:
+                    document.getElementById("business-name").value.trim(),
+
+                businessType:
+                    document.getElementById("business-type").value,
+
+                businessLocation:
+                    document.getElementById("business-location").value.trim(),
+
+                businessDistrict:
+                    document.getElementById("business-district").value.trim(),
+
+                produceRequired:
+                    document.getElementById("produce-required").value.trim()
+            };
+
+
+            /*
+             * Save the common information and only the
+             * selected role's information.
+             */
+
+            const profileData = {
+                uid: user.uid,
+
+                fullName: fullName || user.displayName || "",
+                email: email || user.email || "",
+                phone: phone,
+
+                role: role,
+
+                photoURL: user.photoURL || "",
+
+                createdAt: serverTimestamp(),
+                updatedAt: serverTimestamp()
+            };
+
+
+            if (role === "farmer") {
+                profileData.farmerProfile = farmerProfile;
+            }
+
+            if (role === "business") {
+                profileData.businessProfile = businessProfile;
+            }
+
+
+            await setDoc(
+                doc(db, "users", user.uid),
+                profileData,
+                { merge: true }
+            );
+        document.getElementById("auth-message").textContent =
+    "Account created successfully! Your profile has been saved.";
+
+console.log("Saved profile:", profileData);
+
+// Display the newly created profile
+displaySavedProfile(
+    {
+        ...profileData,
+        createdAt: null,
+        updatedAt: null
+    },
+    user
+);
+
+        } catch (error) {
+            console.error("Google sign-in error:", error);
+
+            document.getElementById("auth-message").textContent =
+                error.message;
+        }
+    };
+   /* ==============================
+   Logout
+================================= */
+
+logoutButton.addEventListener("click", async function () {
+    try {
+        await signOut(auth);
+
+        selectedRole = null;
+        window.selectedRole = null;
+
+        profileMessage.textContent = "";
+
+        showScreen(welcomeScreen);
+
+    } catch (error) {
+        console.error("Logout error:", error);
+
+        profileMessage.textContent =
+            "Logout failed. Please try again.";
+    }
+}); 
+</script>   
+</body>
+</html>
