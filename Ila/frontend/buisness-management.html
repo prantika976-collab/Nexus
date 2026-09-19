@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Food Records</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f3e8;
+            color: #24452f;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 250px;
+            min-height: 100vh;
+            background: #dcebdc;
+            padding: 30px 20px;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+
+        .brand {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .brand-text {
+            color: #667568;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .business-box {
+            background: #ffffff;
+            padding: 16px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+        }
+
+        .business-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .business-location {
+            color: #667568;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .side-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .side-menu a {
+            text-decoration: none;
+            color: #4f7655;
+            padding: 13px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+
+        .side-menu a.active,
+        .side-menu a:hover {
+            background: #ffffff;
+        }
+
+        /* MAIN */
+
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 35px;
+        }
+
+        .eyebrow {
+            color: #718073;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            font-size: 34px;
+            margin-bottom: 22px;
+        }
+
+        /* HERO */
+
+        .hero {
+            background: #315f39;
+            color: white;
+            padding: 30px;
+            border-radius: 22px;
+            margin-bottom: 28px;
+        }
+
+        .hero h2 {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .hero p {
+            color: #e5eee3;
+            line-height: 1.6;
+            max-width: 750px;
+        }
+
+        /* SUMMARY */
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
+        .summary-card {
+            background: #ffffff;
+            border: 1px solid #e3e4d9;
+            border-radius: 18px;
+            padding: 22px;
+        }
+
+        .summary-label {
+            color: #667568;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .summary-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #315f39;
+        }
+
+        .summary-unit {
+            color: #667568;
+            font-size: 12px;
+            margin-left: 4px;
+        }
+
+        /* RECORD AREA */
+
+        .record-layout {
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 22px;
+            margin-bottom: 28px;
+        }
+
+        .panel {
+            background: #ffffff;
+            border: 1px solid #e3e4d9;
+            border-radius: 22px;
+            padding: 24px;
+        }
+
+        .panel h2 {
+            font-size: 21px;
+            margin-bottom: 7px;
+        }
+
+        .panel-description {
+            color: #667568;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        /* FORM */
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 13px;
+            border: 1px solid #d7ddd4;
+            border-radius: 11px;
+            font-size: 14px;
+            outline: none;
+            background: #fbfcf8;
+        }
+
+        .form-group input:focus {
+            border-color: #4f7655;
+        }
+
+        .remaining-preview {
+            background: #eef5eb;
+            border-radius: 12px;
+            padding: 13px;
+            margin-bottom: 17px;
+            color: #315f39;
+            font-size: 13px;
+        }
+
+        .remaining-preview strong {
+            font-size: 18px;
+        }
+
+        .save-button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 12px;
+            background: #4f7655;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .save-button:hover {
+            background: #315f39;
+        }
+
+        /* DEMAND */
+
+        .demand-box {
+            background: #f7f3e8;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 18px;
+        }
+
+        .demand-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .demand-text {
+            color: #667568;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .demand-number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #315f39;
+            margin: 8px 0;
+        }
+
+        /* TABLE */
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        th {
+            text-align: left;
+            background: #eef5eb;
+            color: #315f39;
+            padding: 13px;
+            font-size: 12px;
+        }
+
+        td {
+            padding: 13px;
+            border-bottom: 1px solid #e9ece5;
+            font-size: 13px;
+        }
+
+        .remaining-badge {
+            background: #eef5eb;
+            color: #315f39;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .empty {
+            padding: 30px;
+            text-align: center;
+            color: #667568;
+        }
+
+        /* AVERAGES */
+
+        .average-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .average-card {
+            background: #f7f3e8;
+            border-radius: 15px;
+            padding: 17px;
+        }
+
+        .average-card span {
+            display: block;
+            color: #667568;
+            font-size: 12px;
+            margin-bottom: 7px;
+        }
+
+        .average-card strong {
+            font-size: 22px;
+            color: #315f39;
+        }
+
+        /* MESSAGE */
+
+        .message {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            background: #315f39;
+            color: white;
+            padding: 14px 18px;
+            border-radius: 12px;
+            opacity: 0;
+            transform: translateY(15px);
+            pointer-events: none;
+            transition: 0.25s;
+            font-size: 13px;
+            z-index: 1000;
+        }
+
+        .message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 950px) {
+
+            .sidebar {
+                width: 210px;
+            }
+
+            .main {
+                margin-left: 210px;
+                width: calc(100% - 210px);
+                padding: 25px;
+            }
+
+            .record-layout {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .page {
+                display: block;
+            }
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                min-height: auto;
+                padding: 20px;
+            }
+
+            .side-menu {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .main {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .average-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="page">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            Business Workspace
+        </div>
+
+        <div class="brand-text">
+            Local food and circular resource management
+        </div>
+
+
+        <div class="business-box">
+
+            <div class="business-name">
+                GreenBite Kitchen
+            </div>
+
+            <div class="business-location">
+                Restaurant & Food Business<br>
+                Shillong, Meghalaya
+            </div>
+
+        </div>
+
+
+        <nav class="side-menu">
+
+            <a
+                href="local-produce.html"
+                target="_blank"
+            >
+                Local Produce
+            </a>
+
+
+            <a
+                href="business-management.html"
+                class="active"
+            >
+                Food Records
+            </a>
+
+
+            <a
+                href="record-surplus.html"
+                target="_blank"
+            >
+                Record Surplus
+            </a>
+
+
+            <a
+                href="manage-resources.html"
+                target="_blank"
+            >
+                Manage Resources
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+
+        <div class="eyebrow">
+            BUSINESS MANAGEMENT
+        </div>
+
+
+        <h1>
+            Food Records
+        </h1>
+
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <h2>
+                Track your daily food flow.
+            </h2>
+
+            <p>
+                Record how much food was prepared and sold each day.
+                The remaining quantity is calculated automatically and
+                stored as part of your business history.
+            </p>
+
+        </section>
+
+
+
+        <!-- CURRENT SUMMARY -->
+
+        <section class="summary-grid">
+
+
+            <div class="summary-card">
+
+                <div class="summary-label">
+                    Latest Prepared
+                </div>
+
+                <div>
+
+                    <span
+                        class="summary-value"
+                        id="latestPrepared"
+                    >
+                        --
+                    </span>
+
+                    <span class="summary-unit">
+                        meals
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="summary-card">
+
+                <div class="summary-label">
+                    Latest Sold
+                </div>
+
+                <div>
+
+                    <span
+                        class="summary-value"
+                        id="latestSold"
+                    >
+                        --
+                    </span>
+
+                    <span class="summary-unit">
+                        meals
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="summary-card">
+
+                <div class="summary-label">
+                    Latest Remaining
+                </div>
+
+                <div>
+
+                    <span
+                        class="summary-value"
+                        id="latestRemaining"
+                    >
+                        --
+                    </span>
+
+                    <span class="summary-unit">
+                        meals
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- RECORD + DEMAND -->
+
+        <section class="record-layout">
+
+
+            <!-- ADD RECORD -->
+
+            <div class="panel">
+
+                <h2>
+                    Add Food Record
+                </h2>
+
+                <p class="panel-description">
+                    Enter the food prepared and sold for a day.
+                    Remaining food will be calculated automatically.
+                </p>
+
+
+                <form id="foodForm">
+
+
+                    <div class="form-group">
+
+                        <label for="foodDate">
+                            Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="foodDate"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="foodPrepared">
+                            Food Prepared
+                        </label>
+
+                        <input
+                            type="number"
+                            id="foodPrepared"
+                            min="0"
+                            placeholder="Example: 120"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="foodSold">
+                            Food Sold
+                        </label>
+
+                        <input
+                            type="number"
+                            id="foodSold"
+                            min="0"
+                            placeholder="Example: 100"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="remaining-preview">
+
+                        Remaining food:
+
+                        <strong id="remainingPreview">
+                            0
+                        </strong>
+
+                        meals
+
+                    </div>
+
+
+
+                    <button
+                        type="submit"
+                        class="save-button"
+                    >
+                        Save Food Record
+                    </button>
+
+
+                </form>
+
+            </div>
+
+
+
+            <!-- DEMAND -->
+
+            <div class="panel">
+
+                <h2>
+                    Demand Insight
+                </h2>
+
+                <p class="panel-description">
+                    A simple estimate based on the food sold in
+                    your recorded history.
+                </p>
+
+
+                <div class="demand-box">
+
+                    <div class="demand-title">
+                        Average meals sold
+                    </div>
+
+                    <div
+                        class="demand-number"
+                        id="averageSold"
+                    >
+                        --
+                    </div>
+
+                    <div
+                        class="demand-text"
+                        id="demandMessage"
+                    >
+                        Add food records to understand your usual demand.
+                    </div>
+
+                </div>
+
+
+
+                <div class="average-grid">
+
+
+                    <div class="average-card">
+
+                        <span>
+                            Average prepared
+                        </span>
+
+                        <strong id="averagePrepared">
+                            --
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="average-card">
+
+                        <span>
+                            Average sold
+                        </span>
+
+                        <strong id="averageSoldSmall">
+                            --
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="average-card">
+
+                        <span>
+                            Average remaining
+                        </span>
+
+                        <strong id="averageRemaining">
+                            --
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- HISTORY -->
+
+        <section class="panel">
+
+            <h2>
+                Food Record History
+            </h2>
+
+            <p class="panel-description">
+                Stored daily records can be used to understand
+                preparation, sales and remaining food over time.
+            </p>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Prepared
+                            </th>
+
+                            <th>
+                                Sold
+                            </th>
+
+                            <th>
+                                Remaining
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="foodTable">
+
+                        <tr>
+
+                            <td
+                                colspan="4"
+                                class="empty"
+                            >
+                                Loading food records...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+<div
+    class="message"
+    id="message"
+>
+</div>
+
+
+
+<script>
+
+    const API = "http://127.0.0.1:5000";
+
+    const BUSINESS_ID = 1;
+
+
+    const dateInput =
+        document.getElementById("foodDate");
+
+    const preparedInput =
+        document.getElementById("foodPrepared");
+
+    const soldInput =
+        document.getElementById("foodSold");
+
+    const remainingPreview =
+        document.getElementById("remainingPreview");
+
+
+    function setToday() {
+
+        const today = new Date();
+
+        const year =
+            today.getFullYear();
+
+        const month =
+            String(today.getMonth() + 1)
+                .padStart(2, "0");
+
+        const day =
+            String(today.getDate())
+                .padStart(2, "0");
+
+        dateInput.value =
+            `${year}-${month}-${day}`;
+    }
+
+
+    function updateRemaining() {
+
+        const prepared =
+            Number(preparedInput.value) || 0;
+
+        const sold =
+            Number(soldInput.value) || 0;
+
+        const remaining =
+            Math.max(prepared - sold, 0);
+
+        remainingPreview.innerText =
+            remaining;
+    }
+
+
+    preparedInput.addEventListener(
+        "input",
+        updateRemaining
+    );
+
+
+    soldInput.addEventListener(
+        "input",
+        updateRemaining
+    );
+
+
+    function showMessage(text) {
+
+        const message =
+            document.getElementById("message");
+
+        message.innerText =
+            text;
+
+        message.classList.add("show");
+
+        setTimeout(() => {
+
+            message.classList.remove("show");
+
+        }, 2500);
+    }
+
+
+
+    function displayRecords(records) {
+
+        const table =
+            document.getElementById("foodTable");
+
+
+        if (!records || records.length === 0) {
+
+            table.innerHTML = `
+                <tr>
+                    <td
+                        colspan="4"
+                        class="empty"
+                    >
+                        No food records available yet.
+                    </td>
+                </tr>
+            `;
+
+            document.getElementById(
+                "latestPrepared"
+            ).innerText = "--";
+
+            document.getElementById(
+                "latestSold"
+            ).innerText = "--";
+
+            document.getElementById(
+                "latestRemaining"
+            ).innerText = "--";
+
+            document.getElementById(
+                "averagePrepared"
+            ).innerText = "--";
+
+            document.getElementById(
+                "averageSoldSmall"
+            ).innerText= "--";
+
+            document.getElementById(
+                "averageRemaining"
+            ).innerText = "--";
+
+            document.getElementById(
+                "averageSold"
+            ).innerText = "--";
+
+            return;
+        }
+
+
+        const latest =
+            records[0];
+
+
+        document.getElementById(
+            "latestPrepared"
+        ).innerText =
+            latest.food_prepared;
+
+
+        document.getElementById(
+            "latestSold"
+        ).innerText =
+            latest.food_sold;
+
+
+        document.getElementById(
+            "latestRemaining"
+        ).innerText =
+            latest.food_remaining;
+
+
+        let preparedTotal = 0;
+        let soldTotal = 0;
+        let remainingTotal = 0;
+
+
+        records.forEach(record => {
+
+            preparedTotal +=
+                Number(record.food_prepared) || 0;
+
+            soldTotal +=
+                Number(record.food_sold) || 0;
+
+            remainingTotal +=
+                Number(record.food_remaining) || 0;
+
+        });
+
+
+        const count =
+            records.length;
+
+
+        const averagePrepared =
+            preparedTotal / count;
+
+        const averageSold =
+            soldTotal / count;
+
+        const averageRemaining =
+            remainingTotal / count;
+
+
+        document.getElementById(
+            "averagePrepared"
+        ).innerText =
+            averagePrepared.toFixed(1);
+
+
+        document.getElementById(
+            "averageSoldSmall"
+        ).innerText =
+            averageSold.toFixed(1);
+
+
+        document.getElementById(
+            "averageRemaining"
+        ).innerText =
+            averageRemaining.toFixed(1);
+
+
+        document.getElementById(
+            "averageSold"
+        ).innerText =
+            averageSold.toFixed(1);
+
+
+        document.getElementById(
+            "demandMessage"
+        ).innerText =
+            `Based on ${count} recorded day${count === 1 ? "" : "s"}, the average number of meals sold is ${averageSold.toFixed(1)}.`;
+
+
+        table.innerHTML = "";
+
+
+        records.forEach(record => {
+
+            const row =
+                document.createElement("tr");
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${record.date}
+                </td>
+
+                <td>
+                    ${record.food_prepared}
+                </td>
+
+                <td>
+                    ${record.food_sold}
+                </td>
+
+                <td>
+                    <span class="remaining-badge">
+                        ${record.food_remaining}
+                    </span>
+                </td>
+
+            `;
+
+
+            table.appendChild(row);
+
+        });
+
+    }
+
+
+    function loadFoodRecords() {
+
+        fetch(
+            `${API}/food/${BUSINESS_ID}`
+        )
+
+        .then(response => {
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Could not load food records"
+                );
+
+            }
+
+            return response.json();
+
+        })
+
+        .then(records => {
+
+            displayRecords(records);
+
+        })
+
+        .catch(error => {
+
+            console.log(error);
+
+
+            document.getElementById(
+                "foodTable"
+            ).innerHTML = `
+
+                <tr>
+
+                    <td
+                        colspan="4"
+                        class="empty"
+                    >
+                        Make sure the backend is running.
+                    </td>
+
+                </tr>
+
+            `;
+
+            showMessage(
+                "Make sure the backend is running."
+            );
+
+        });
+
+    }
+
+
+    document.getElementById(
+        "foodForm"
+    ).addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const date =
+                dateInput.value;
+
+            const prepared =
+                Number(preparedInput.value);
+
+            const sold =
+                Number(soldInput.value);
+
+
+            if (
+                !date ||
+                Number.isNaN(prepared) ||
+                Number.isNaN(sold)
+            ) {
+
+                showMessage(
+                    "Please fill in all fields."
+                );
+
+                return;
+            }
+
+
+            if (prepared < 0 || sold < 0) {
+
+                showMessage(
+                    "Food quantities cannot be negative."
+                );
+
+                return;
+            }
+
+
+            if (sold > prepared) {
+
+                showMessage(
+                    "Sold food cannot be greater than prepared food."
+                );
+
+                return;
+            }
+
+
+            const data = {
+
+                business_id:
+                    BUSINESS_ID,
+
+                date:
+                    date,
+
+                food_prepared:
+                    prepared,
+
+                food_sold:
+                    sold
+
+            };
+
+
+            fetch(
+                `${API}/food`,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify(data)
+                }
+            )
+
+            .then(response => {
+
+                return response.json()
+                    .then(result => {
+
+                        if (!response.ok) {
+
+                            throw new Error(
+                                result.error ||
+                                "Could not save food record"
+                            );
+
+                        }
+
+                        return result;
+
+                    });
+
+            })
+
+            .then(result => {
+
+                showMessage(
+                    `Food record saved. ${result.food_remaining} meals remaining.`
+                );
+
+
+                preparedInput.value = "";
+
+                soldInput.value = "";
+
+                remainingPreview.innerText =
+                    "0";
+
+
+                loadFoodRecords();
+
+            })
+
+            .catch(error => {
+
+                console.log(error);
+
+                showMessage(
+                    error.message ||
+                    "Make sure the backend is running."
+                );
+
+            });
+
+        }
+    );
+
+
+    setToday();
+
+    loadFoodRecords();
+
+</script>
+
+
+</body>
+
+</html>
