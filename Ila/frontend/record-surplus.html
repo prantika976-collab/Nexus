@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Record Surplus</title>
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f3e8;
+            color: #24452f;
+        }
+
+        .app {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 250px;
+            background: #dcebdc;
+            padding: 28px 20px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            border-right: 1px solid #e3e4d9;
+        }
+
+        .brand {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .brand-subtitle {
+            color: #667568;
+            font-size: 13px;
+            margin-bottom: 28px;
+        }
+
+        .profile {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 28px;
+            box-shadow: 0 8px 30px rgba(70, 95, 70, 0.06);
+        }
+
+        .profile-name {
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .profile-type {
+            font-size: 12px;
+            color: #667568;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .nav button {
+            border: none;
+            background: transparent;
+            text-align: left;
+            padding: 13px 14px;
+            border-radius: 12px;
+            color: #24452f;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .nav button:hover {
+            background: #eef5eb;
+        }
+
+        .nav button.active {
+            background: #4f7655;
+            color: white;
+        }
+
+        /* MAIN */
+
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 32px;
+        }
+
+        .top-label {
+            color: #667568;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+        }
+
+        .page-title {
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        .page-description {
+            color: #667568;
+            max-width: 720px;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        /* HERO */
+
+        .hero {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 30px rgba(70, 95, 70, 0.06);
+        }
+
+        .hero-text h2 {
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+
+        .hero-text p {
+            color: #667568;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        .hero-badge {
+            background: #eef5eb;
+            color: #4f7655;
+            padding: 12px 18px;
+            border-radius: 30px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* SECTION */
+
+        .section {
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 30px rgba(70, 95, 70, 0.06);
+        }
+
+        .section-heading {
+            margin-bottom: 20px;
+        }
+
+        .section-heading h2 {
+            font-size: 22px;
+            margin-bottom: 6px;
+        }
+
+        .section-heading p {
+            color: #667568;
+            font-size: 14px;
+        }
+
+        /* CATEGORY */
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .category {
+            border: 1px solid #e3e4d9;
+            background: #f7f3e8;
+            border-radius: 18px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .category:hover {
+            transform: translateY(-3px);
+        }
+
+        .category.selected {
+            border: 2px solid #4f7655;
+            background: #eef5eb;
+        }
+
+        .category img {
+            width: 100%;
+            height: 145px;
+            object-fit: cover;
+        }
+
+        .category-content {
+            padding: 17px;
+        }
+
+        .category-content h3 {
+            font-size: 17px;
+            margin-bottom: 7px;
+        }
+
+        .category-content p {
+            color: #667568;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* FORM */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        .field label {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #dfe3d9;
+            border-radius: 11px;
+            background: #ffffff;
+            color: #24452f;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            border-color: #4f7655;
+        }
+
+        .field textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .save-button {
+            margin-top: 20px;
+            border: none;
+            background: #4f7655;
+            color: white;
+            padding: 14px 23px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .save-button:hover {
+            background: #3f6345;
+        }
+
+        /* DESTINATIONS */
+
+        .destination-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .destination {
+            border: 1px solid #e3e4d9;
+            border-radius: 16px;
+            padding: 18px;
+            background: #f7f3e8;
+        }
+
+        .destination h3 {
+            font-size: 16px;
+            margin-bottom: 7px;
+        }
+
+        .destination p {
+            color: #667568;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 13px;
+        }
+
+        .destination-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .small-button {
+            border: none;
+            background: #4f7655;
+            color: white;
+            padding: 9px 12px;
+            border-radius: 9px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .small-button.secondary {
+            background: #dcebdc;
+            color: #24452f;
+        }
+
+        /* MAP */
+
+        .map-container {
+            margin-top: 20px;
+        }
+
+        #map {
+            width: 100%;
+            height: 430px;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid #e3e4d9;
+        }
+
+        .selected-location {
+            margin-top: 12px;
+            background: #eef5eb;
+            padding: 13px 15px;
+            border-radius: 11px;
+            font-size: 13px;
+            color: #4f7655;
+        }
+
+        /* STATUS */
+
+        .status-box {
+            display: none;
+            margin-top: 18px;
+            background: #eef5eb;
+            border-left: 4px solid #4f7655;
+            padding: 14px;
+            border-radius: 10px;
+            color: #24452f;
+            font-size: 14px;
+        }
+
+        /* MOBILE NAV */
+
+        .mobile-nav {
+            display: none;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 950px) {
+
+            .sidebar {
+                width: 210px;
+            }
+
+            .main {
+                margin-left: 210px;
+                width: calc(100% - 210px);
+                padding: 25px;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category {
+                display: grid;
+                grid-template-columns: 180px 1fr;
+            }
+
+            .category img {
+                height: 100%;
+                min-height: 150px;
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+                width: 100%;
+                padding: 18px;
+                padding-bottom: 90px;
+            }
+
+            .page-title {
+                font-size: 27px;
+            }
+
+            .hero {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+
+            .destination-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category {
+                display: block;
+            }
+
+            .category img {
+                height: 160px;
+            }
+
+            #map {
+                height: 350px;
+            }
+
+            .mobile-nav {
+                display: flex;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: white;
+                border-top: 1px solid #e3e4d9;
+                padding: 8px;
+                z-index: 1000;
+                justify-content: space-around;
+            }
+
+            .mobile-nav button {
+                border: none;
+                background: transparent;
+                color: #24452f;
+                font-size: 11px;
+                padding: 8px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            Business Workspace
+        </div>
+
+        <div class="brand-subtitle">
+            Circular food management
+        </div>
+
+        <div class="profile">
+            <div class="profile-name">
+                GreenBite Kitchen
+            </div>
+
+            <div class="profile-type">
+                Restaurant & Food Business
+            </div>
+        </div>
+
+        <nav class="nav">
+
+            <button onclick="window.open('index.html', '_blank')">
+                Overview
+            </button>
+
+            <button onclick="window.open('local-produce.html', '_blank')">
+                Local Produce
+            </button>
+
+            <button onclick="window.open('business-management.html', '_blank')">
+                Food Records
+            </button>
+
+            <button class="active">
+                Record Surplus
+            </button>
+
+            <button onclick="window.open('manage-resources.html', '_blank')">
+                Manage Resources
+            </button>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <div class="top-label">
+            SURPLUS MANAGEMENT
+        </div>
+
+        <h1 class="page-title">
+            Record Surplus
+        </h1>
+
+        <p class="page-description">
+            Record food that remains after daily operations and identify
+            suitable ways to redistribute, reuse or recover it.
+        </p>
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="hero-text">
+
+                <h2>
+                    Make every meal count.
+                </h2>
+
+                <p>
+                    Record edible food, usable raw ingredients and organic
+                    waste so that surplus can move to a useful destination
+                    instead of becoming unnecessary waste.
+                </p>
+
+            </div>
+
+            <div class="hero-badge">
+                Circular Food Flow
+            </div>
+
+        </section>
+
+
+        <!-- CATEGORY -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <h2>
+                    What type of surplus do you have?
+                </h2>
+
+                <p>
+                    Select the category that best describes the surplus.
+                </p>
+
+            </div>
+
+
+            <div class="category-grid">
+
+                <div
+                    class="category"
+                    data-type="Edible Prepared Food"
+                    onclick="selectCategory(this)"
+                >
+
+                    <img
+                        src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=85"
+                        alt="Prepared food"
+                    >
+
+                    <div class="category-content">
+
+                        <h3>
+                            Edible Prepared Food
+                        </h3>
+
+                        <p>
+                            Prepared meals or food that is still safe and
+                            suitable for redistribution.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="category"
+                    data-type="Usable Raw Food"
+                    onclick="selectCategory(this)"
+                >
+
+                    <img
+                        src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=700&q=85"
+                        alt="Fresh vegetables"
+                    >
+
+                    <div class="category-content">
+
+                        <h3>
+                            Usable Raw Food
+                        </h3>
+
+                        <p>
+                            Vegetables, fruits or fresh ingredients that
+                            can still be used.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="category"
+                    data-type="Organic Waste"
+                    onclick="selectCategory(this)"
+                >
+
+                    <img
+                        src="https://images.unsplash.com/photo-1605600659908-0ef719419d41?auto=format&fit=crop&w=700&q=85"
+                        alt="Organic waste"
+                    >
+
+                    <div class="category-content">
+
+                        <h3>
+                            Organic Waste
+                        </h3>
+
+                        <p>
+                            Food scraps, peels and other organic material
+                            suitable for compost or resource recovery.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RECORD FORM -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <h2>
+                    Surplus details
+                </h2>
+
+                <p>
+                    Enter the details of the surplus you want to record.
+                </p>
+
+            </div>
+
+
+            <form id="surplusForm">
+
+                <input
+                    type="hidden"
+                    id="surplusType"
+                >
+
+
+                <div class="form-grid">
+
+                    <div class="field">
+
+                        <label for="quantity">
+                            Quantity
+                        </label>
+
+                        <input
+                            type="number"
+                            id="quantity"
+                            min="0.1"
+                            step="0.1"
+                            placeholder="Enter quantity"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="unit">
+                            Unit
+                        </label>
+
+                        <select id="unit">
+
+                            <option value="meals">
+                                Meals
+                            </option>
+
+                            <option value="kg">
+                                Kilograms
+                            </option>
+
+                            <option value="litres">
+                                Litres
+                            </option>
+
+                            <option value="items">
+                                Items
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="surplusDate">
+                            Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="surplusDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="status">
+                            Current Status
+                        </label>
+
+                        <select id="status">
+
+                            <option value="Available for redistribution">
+                                Available for redistribution
+                            </option>
+
+                            <option value="Available for reuse">
+                                Available for reuse
+                            </option>
+
+                            <option value="Sent for recovery">
+                                Sent for recovery
+                            </option>
+
+                            <option value="Recorded">
+                                Recorded
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="contactNumber">
+                            Contact Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="contactNumber"
+                            placeholder="Enter your phone number"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="destination">
+                            Destination
+                        </label>
+
+                        <select id="destination">
+
+                            <option value="">
+                                Select a destination
+                            </option>
+
+                            <option value="Community Food Support">
+                                Community Food Support
+                            </option>
+
+                            <option value="Local Community Centre">
+                                Local Community Centre
+                            </option>
+
+                            <option value="Local Agricultural Connection">
+                                Local Agricultural Connection
+                            </option>
+
+                            <option value="Organic Recovery Point">
+                                Organic Recovery Point
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="field full">
+
+                        <label for="notes">
+                            Notes
+                            <textarea
+    id="notes"
+    placeholder="Add any useful information about the surplus..."
+></textarea>
+
+</div>
+
+</div>
+
+<button
+    type="submit"
+    class="save-button"
+>
+    Save Surplus Record
+</button>
+
+<div
+    id="statusBox"
+    class="status-box"
+></div>
+
+</form>
+
+</section>
+
+
+<!-- POSSIBLE DESTINATIONS -->
+
+<section class="section">
+
+    <div class="section-heading">
+
+        <h2>
+            Possible Destinations
+        </h2>
+
+        <p>
+            Choose a suitable destination for your surplus food or
+            organic material.
+        </p>
+
+    </div>
+
+
+    <div class="destination-grid">
+
+
+        <div class="destination">
+
+            <h3>
+                Bethany Society
+            </h3>
+
+            <p>
+                Shillong, Meghalaya<br>
+                Potential community food redistribution destination
+            </p>
+
+            <div class="destination-actions">
+
+                <button
+                    class="small-button"
+                    onclick="showDestination(
+                        25.5788,
+                        91.8933,
+                        'Bethany Society'
+                    )"
+                >
+                    View on Map
+                </button>
+
+                <button
+                    class="small-button secondary"
+                    onclick="contactOrganization(
+                        'Bethany Society'
+                    )"
+                >
+                    Contact
+                </button>
+
+                <button
+                    class="small-button"
+                    onclick="sendSurplus(
+                        'Bethany Society'
+                    )"
+                >
+                    Send Surplus
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="destination">
+
+            <h3>
+                Grassroot NGO Shillong
+            </h3>
+
+            <p>
+                Shillong, Meghalaya<br>
+                Potential community food redistribution destination
+            </p>
+
+            <div class="destination-actions">
+
+                <button
+                    class="small-button"
+                    onclick="showDestination(
+                        25.5688,
+                        91.9000,
+                        'Grassroot NGO Shillong'
+                    )"
+                >
+                    View on Map
+                </button>
+
+                <button
+                    class="small-button secondary"
+                    onclick="contactOrganization(
+                        'Grassroot NGO Shillong'
+                    )"
+                >
+                    Contact
+                </button>
+
+                <button
+                    class="small-button"
+                    onclick="sendSurplus(
+                        'Grassroot NGO Shillong'
+                    )"
+                >
+                    Send Surplus
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="destination">
+
+            <h3>
+                Impulse NGO Network
+            </h3>
+
+            <p>
+                Shillong, Meghalaya<br>
+                Potential community food redistribution destination
+            </p>
+
+            <div class="destination-actions">
+
+                <button
+                    class="small-button"
+                    onclick="showDestination(
+                        25.5655,
+                        91.8750,
+                        'Impulse NGO Network'
+                    )"
+                >
+                    View on Map
+                </button>
+
+                <button
+                    class="small-button secondary"
+                    onclick="contactOrganization(
+                        'Impulse NGO Network'
+                    )"
+                >
+                    Contact
+                </button>
+
+                <button
+                    class="small-button"
+                    onclick="sendSurplus(
+                        'Impulse NGO Network'
+                    )"
+                >
+                    Send Surplus
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="destination">
+
+            <h3>
+                Reach Shillong Ministries
+            </h3>
+
+            <p>
+                Shillong, Meghalaya<br>
+                Potential community food redistribution destination
+            </p>
+
+            <div class="destination-actions">
+
+                <button
+                    class="small-button"
+                    onclick="showDestination(
+                        25.5900,
+                        91.8800,
+                        'Reach Shillong Ministries'
+                    )"
+                >
+                    View on Map
+                </button>
+
+                <button
+                    class="small-button secondary"
+                    onclick="contactOrganization(
+                        'Reach Shillong Ministries'
+                    )"
+                >
+                    Contact
+                </button>
+
+                <button
+                    class="small-button"
+                    onclick="sendSurplus(
+                        'Reach Shillong Ministries'
+                    )"
+                >
+                    Send Surplus
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- INTERACTIVE MAP -->
+
+    <div class="map-container">
+
+        <div id="map"></div>
+
+        <div
+            id="selectedLocation"
+            class="selected-location"
+        >
+            Click or tap anywhere on the map to select a location.
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+</div>
+
+
+<!-- MOBILE NAV -->
+
+<div class="mobile-nav">
+
+    <button
+        onclick="window.open(
+            'index.html',
+            '_blank'
+        )"
+    >
+        Overview
+    </button>
+
+    <button
+        onclick="window.open(
+            'local-produce.html',
+            '_blank'
+        )"
+    >
+        Produce
+    </button>
+
+    <button
+        onclick="window.open(
+            'business-management.html',
+            '_blank'
+        )"
+    >
+        Food
+    </button>
+
+    <button>
+        Surplus
+    </button>
+
+    <button
+        onclick="window.open(
+            'manage-resources.html',
+            '_blank'
+        )"
+    >
+        Resources
+    </button>
+
+</div>
+</div>
+
+
+<div class="map-container">
+
+    <div id="map"></div>
+
+    <div
+        id="selectedLocation"
+        class="selected-location"
+    >
+        Click or tap anywhere on the map to select a location.
+    </div>
+
+</div>
+
+</section>
+
+
+</main>
+
+</div>
+
+
+<!-- MOBILE NAV -->
+
+<div class="mobile-nav">
+
+    <button
+        onclick="window.open('index.html', '_blank')"
+    >
+        Overview
+    </button>
+
+    <button
+        onclick="window.open('local-produce.html', '_blank')"
+    >
+        Produce
+    </button>
+
+    <button
+        onclick="window.open('business-management.html', '_blank')"
+    >
+        Food
+    </button>
+
+    <button>
+        Surplus
+    </button>
+
+    <button
+        onclick="window.open('manage-resources.html', '_blank')"
+    >
+        Resources
+    </button>
+
+</div>
+
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+const businessId = 1;
+
+let selectedMarker = null;
+
+
+/* DEFAULT DATE */
+
+const dateInput =
+    document.getElementById("surplusDate");
+
+if (dateInput) {
+
+    const today = new Date();
+
+    const year =
+        today.getFullYear();
+
+    const month =
+        String(today.getMonth() + 1)
+        .padStart(2, "0");
+
+    const day =
+        String(today.getDate())
+        .padStart(2, "0");
+
+    dateInput.value =
+        `${year}-${month}-${day}`;
+}
+
+
+/* CATEGORY SELECTION */
+
+function selectCategory(card) {
+
+    document
+        .querySelectorAll(".category")
+        .forEach(item => {
+
+            item.classList.remove("selected");
+
+        });
+
+
+    card.classList.add("selected");
+
+
+    const selectedCategory =
+        card.getAttribute("data-type");
+
+
+    document.getElementById(
+        "surplusType"
+    ).value = selectedCategory;
+
+
+    const unit =
+        document.getElementById("unit");
+
+
+    if (
+        selectedCategory ===
+        "Edible Prepared Food"
+    ) {
+
+        unit.value = "meals";
+
+    }
+
+
+    if (
+        selectedCategory ===
+        "Usable Raw Food"
+    ) {
+
+        unit.value = "kg";
+
+    }
+
+
+    if (
+        selectedCategory ===
+        "Organic Waste"
+    ) {
+
+        unit.value = "kg";
+
+    }
+
+}
+
+
+/* MAP */
+
+const map =
+    L.map("map").setView(
+        [25.5788, 91.8933],
+        13
+    );
+
+
+L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {
+        maxZoom: 19,
+
+        attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
+    }
+).addTo(map);
+
+
+/* BUSINESS LOCATION */
+
+L.marker(
+    [25.5788, 91.8933]
+)
+.addTo(map)
+.bindPopup(
+    "<strong>Business Location</strong><br>Shillong, Meghalaya"
+);
+
+
+/* NGO / DESTINATION MARKERS */
+
+const destinations = [
+
+    {
+        name: "Bethany Society",
+        lat: 25.5788,
+        lng: 91.8933
+    },
+
+    {
+        name: "Grassroot NGO Shillong",
+        lat: 25.5688,
+        lng: 91.9000
+    },
+
+    {
+        name: "Impulse NGO Network",
+        lat: 25.5655,
+        lng: 91.8750
+    },
+
+    {
+        name: "Reach Shillong Ministries",
+        lat: 25.5900,
+        lng: 91.8800
+    }
+
+];
+
+
+destinations.forEach(destination => {
+
+    L.marker([
+        destination.lat,
+        destination.lng
+    ])
+    .addTo(map)
+    .bindPopup(
+        `<strong>${destination.name}</strong><br>
+        Potential community destination`
+    );
+
+});
+
+
+/* USER SELECTS LOCATION */
+
+map.on(
+    "click",
+    function(event) {
+
+        const latitude =
+            event.latlng.lat.toFixed(6);
+
+        const longitude =
+            event.latlng.lng.toFixed(6);
+
+
+        if (selectedMarker) {
+
+            map.removeLayer(
+                selectedMarker
+            );
+
+        }
+
+
+        selectedMarker =
+            L.marker([
+                event.latlng.lat,
+                event.latlng.lng
+            ])
+            .addTo(map)
+            .bindPopup(
+                "<strong>Selected Location</strong>"
+            )
+            .openPopup();
+
+
+        document.getElementById(
+            "selectedLocation"
+        ).innerHTML =
+            `<strong>Selected location:</strong>
+            ${latitude}, ${longitude}`;
+
+    }
+);
+
+
+/* SHOW DESTINATION */
+
+function showDestination(
+    latitude,
+    longitude,
+    name
+) {
+
+    map.setView(
+        [latitude, longitude],
+        15
+    );
+
+
+    L.popup()
+        .setLatLng([
+            latitude,
+            longitude
+        ])
+        .setContent(
+            `<strong>${name}</strong><br>
+            Potential surplus destination`
+        )
+        .openOn(map);
+
+}
+
+
+/* CONTACT */
+
+function contactOrganization(name) {
+
+    alert(
+        "Contact option selected for " +
+        name +
+        "."
+    );
+
+}
+
+
+/* SEND SURPLUS */
+
+function sendSurplus(name) {
+
+    const type =
+        document.getElementById(
+            "surplusType"
+        ).value;
+
+    const quantity =
+        document.getElementById(
+            "quantity"
+        ).value;
+
+    const unit =
+        document.getElementById(
+            "unit"
+        ).value;
+
+
+    if (!type) {
+
+        alert(
+            "Please select a surplus category first."
+        );
+
+        return;
+
+    }
+
+
+    if (!quantity) {
+
+        alert(
+            "Please enter the surplus quantity first."
+        );
+
+        return;
+
+    }
+
+
+    alert(
+        `${quantity} ${unit} of ${type} can be sent to ${name}.`
+    );
+
+}
+
+
+/* SAVE SURPLUS */
+
+document
+    .getElementById("surplusForm")
+    .addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const surplusType =
+                document.getElementById(
+                    "surplusType"
+                ).value;
+
+
+            const quantity =
+                Number(
+                    document.getElementById(
+                        "quantity"
+                    ).value
+                );
+
+
+            const unit =
+                document.getElementById(
+                    "unit"
+                ).value;
+
+
+            const date =
+                document.getElementById(
+                    "surplusDate"
+                ).value;
+
+
+            const status =
+                document.getElementById(
+                    "status"
+                ).value;
+
+
+            const contactNumber =
+                document.getElementById(
+                    "contactNumber"
+                ).value.trim();
+
+
+            const destination =
+                document.getElementById(
+                    "destination"
+                ).value;
+
+
+            const notes =
+                document.getElementById(
+                    "notes"
+                ).value.trim();
+
+
+            const statusBox =
+                document.getElementById(
+                    "statusBox"
+                );
+
+
+            if (!surplusType) {
+
+                statusBox.style.display =
+                    "block";
+
+                statusBox.textContent =
+                    "Please select a surplus category.";
+
+                return;
+
+            }
+
+
+            if (
+                !quantity ||
+                quantity <= 0
+            ) {
+
+                statusBox.style.display =
+                    "block";
+
+                statusBox.textContent =
+                    "Please enter a valid quantity.";
+
+                return;
+
+            }
+
+
+            if (!date) {
+
+                statusBox.style.display =
+                    "block";
+
+                statusBox.textContent =
+                    "Please select a date.";
+
+                return;
+
+            }
+
+
+            if (!contactNumber) {
+
+                statusBox.style.display =
+                    "block";
+
+                statusBox.textContent =
+                    "Please enter your contact number.";
+
+                return;
+
+            }
+
+
+            const data = {
+
+                business_id:
+                    businessId,
+
+                surplus_type:
+                    `${surplusType} (${unit})`,
+
+                quantity:
+                    quantity,
+
+                date:
+                    date,
+
+                redistribution_status:
+                    status,
+
+                contact_number:
+                    contactNumber,
+
+                destination:
+                    destination,
+
+                notes:
+                    notes
+
+            };
+
+
+            statusBox.style.display =
+                "block";
+
+
+            statusBox.textContent =
+                "Saving surplus record...";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "http://127.0.0.1:5000/surplus",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify(data)
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        result.error ||
+                        "Unable to save surplus record."
+                    );
+
+                }
+
+
+                statusBox.textContent =
+                    `Surplus record saved successfully: ${quantity} ${unit} of ${surplusType}.`;
+
+
+                document.getElementById(
+                    "quantity"
+                ).value = "";
+
+
+                document.getElementById(
+                    "contactNumber"
+                ).value = "";
+
+
+                document.getElementById(
+                    "notes"
+                ).value = "";
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+                statusBox.textContent =
+                    "Unable to save the surplus record. Make sure the Flask backend is running.";
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+
+</html>
