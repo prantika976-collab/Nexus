@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Manage Resources</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f3e8;
+            color: #24452f;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 250px;
+            min-height: 100vh;
+            background: #dcebdc;
+            padding: 30px 20px;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+
+        .brand {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .brand-text {
+            color: #667568;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .business-box {
+            background: #ffffff;
+            padding: 16px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+        }
+
+        .business-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .business-location {
+            color: #667568;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .side-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .side-menu a {
+            text-decoration: none;
+            color: #4f7655;
+            padding: 13px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+
+        .side-menu a:hover,
+        .side-menu a.active {
+            background: #ffffff;
+        }
+
+        /* MAIN */
+
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 45px;
+        }
+
+        .eyebrow {
+            color: #718073;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .intro {
+            color: #667568;
+            font-size: 15px;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+
+        /* PLACEHOLDER */
+
+        .placeholder {
+            background: #ffffff;
+            border: 1px solid #e3e4d9;
+            border-radius: 24px;
+            padding: 45px;
+            max-width: 900px;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .placeholder-content {
+            max-width: 560px;
+        }
+
+        .resource-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 22px;
+            border-radius: 20px;
+            background: #eef5eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .resource-icon svg {
+            width: 36px;
+            height: 36px;
+            fill: none;
+            stroke: #4f7655;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .placeholder h2 {
+            font-size: 25px;
+            margin-bottom: 12px;
+        }
+
+        .placeholder p {
+            color: #667568;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .resource-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .resource-item {
+            background: #f7f3e8;
+            color: #4f7655;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .back-button {
+            display: inline-block;
+            text-decoration: none;
+            background: #4f7655;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .back-button:hover {
+            background: #315f39;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 700px) {
+
+            .page {
+                display: block;
+            }
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                min-height: auto;
+                padding: 20px;
+            }
+
+            .side-menu {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .main {
+                margin-left: 0;
+                width: 100%;
+                padding: 25px 20px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            .placeholder {
+                padding: 30px 20px;
+                min-height: 380px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="page">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            Business Workspace
+        </div>
+
+        <div class="brand-text">
+            Local food and circular resource management
+        </div>
+
+
+        <div class="business-box">
+
+            <div class="business-name">
+                GreenBite Kitchen
+            </div>
+
+            <div class="business-location">
+                Restaurant & Food Business<br>
+                Shillong, Meghalaya
+            </div>
+
+        </div>
+
+
+        <nav class="side-menu">
+
+            <a
+                href="index.html"
+            >
+                Overview
+            </a>
+
+            <a
+                href="local-produce.html"
+                target="_blank"
+            >
+                Local Produce
+            </a>
+
+            <a
+                href="business-management.html"
+                target="_blank"
+            >
+                Food Records
+            </a>
+
+            <a
+                href="record-surplus.html"
+                target="_blank"
+            >
+                Record Surplus
+            </a>
+
+            <a
+                href="manage-resources.html"
+                class="active"
+            >
+                Manage Resources
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <div class="eyebrow">
+            RESOURCE MANAGEMENT
+        </div>
+
+
+        <h1>
+            Manage Resources
+        </h1>
+
+
+        <p class="intro">
+            A workspace for managing organic materials,
+            resource recovery options and agricultural connections.
+        </p>
+
+
+
+        <!-- PLACEHOLDER -->
+
+        <section class="placeholder">
+
+            <div class="placeholder-content">
+
+                <div class="resource-icon">
+
+                    <svg viewBox="0 0 24 24">
+
+                        <circle
+                            cx="12"
+                            cy="12"
+                            r="3"
+                        ></circle>
+
+                        <path
+                            d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V20h-2.5v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1A1.7 1.7 0 0 0 8.1 15a1.7 1.7 0 0 0-1.6-1H6v-2.5h.5a1.7 1.7 0 0 0 1.6-1A1.7 1.7 0 0 0 7.8 9l-.1-.1 1.8-1.8.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.6V5h2.5v.9a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.5V14h-.5a1.7 1.7 0 0 0-1.6 1z"
+                        ></path>
+
+                    </svg>
+
+                </div>
+
+
+                <h2>
+                    Resource Management Workspace
+                </h2>
+
+
+                <p>
+                    This section will contain organic material
+                    records, recovery options and connections
+                    with nearby agricultural resources.
+                </p>
+
+
+                <div class="resource-list">
+
+                    <span class="resource-item">
+                        Organic Materials
+                    </span>
+
+                    <span class="resource-item">
+                        Recovery Options
+                    </span>
+
+                    <span class="resource-item">
+                        Farm Connections
+                    </span>
+
+                </div>
+
+
+                <br><br>
+
+
+                <a
+                    href="index.html"
+                    class="back-button"
+                >
+                    ← Back to Overview
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>
