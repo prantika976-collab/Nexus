@@ -1,0 +1,4 @@
+farmer_name,location,district,farm_size,soil_type,soil_ph,nitrogen,phosphorus,potassium,current_crop,previous_crop,water_availability,crop_name,quantity_available,availability_date,business_name,business_type,produce_required,food_prepared,food_sold,surplus_quantity,waste_type,waste_quantity,resource_status
+Ravi Kumar,Shillong,East Khasi Hills,2 acres,Loamy,6.5,80,45,40,Tomato,Rice,Good,Tomato,100 kg,2026-09-20,Green Valley Restaurant,Restaurant,Tomato and Potato,Yes,Yes,15 kg,Organic waste,5 kg,Available
+Anita Devi,Nongpoh,Ri-Bhoi,1.5 acres,Sandy loam,6.8,70,40,35,Potato,Corn,Moderate,Potato,80 kg,2026-09-22,Fresh Bites Cafe,Cafe,Potato and Onion,Yes,Yes,10 kg,Food waste,3 kg,Available
+Mohan Singh,Tura,West Garo Hills,3 acres,Clay loam,6.2,90,50,45,Rice,Wheat,Good,Rice,200 kg,2026-10-01,Local Harvest Store,Grocery Store,Rice and Vegetables,No,Yes,20 kg,Packaging waste,8 kg,Available
