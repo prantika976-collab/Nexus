@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Business Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-mark">
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="brand-text">
+                <strong>Business</strong>
+                <small>Workspace</small>
+            </div>
+        </div>
+
+
+        <div class="profile">
+
+            <div class="profile-avatar">
+                G
+            </div>
+
+            <div class="profile-info">
+                <strong>GreenBite Kitchen</strong>
+                <span>Restaurant & Food Business</span>
+            </div>
+
+        </div>
+
+
+        <nav class="navigation">
+
+            <button class="nav-link active">
+
+                <svg viewBox="0 0 24 24">
+                    <path d="M3 10.5L12 3l9 7.5"></path>
+                    <path d="M5 9.5V21h14V9.5"></path>
+                </svg>
+
+                <span>Overview</span>
+
+            </button>
+
+
+            <button
+                class="nav-link"
+                onclick="window.open('local-produce.html', '_blank')">
+
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 21c-4-3-7-6.5-7-11 0-3 2-5 5-5 1.2 0 2.2.5 3 1.4C13.8 5.5 14.8 5 16 5c3 0 5 2 5 5 0 4.5-3 8-7 11"></path>
+                    <path d="M12 20V9"></path>
+                </svg>
+
+                <span>Local Produce</span>
+
+            </button>
+
+
+            <button
+                class="nav-link"
+                onclick="window.open('business-management.html', '_blank')">
+
+                <svg viewBox="0 0 24 24">
+                    <path d="M6 3v7"></path>
+                    <path d="M9 3v7"></path>
+                    <path d="M12 3v7"></path>
+                    <path d="M9 10v11"></path>
+                    <path d="M18 3v18"></path>
+                    <path d="M18 3c-2 2-3 4-3 7h3"></path>
+                </svg>
+
+                <span>Food Records</span>
+
+            </button>
+
+
+            <button
+                class="nav-link"
+                onclick="window.open('record-surplus.html', '_blank')">
+
+                <svg viewBox="0 0 24 24">
+                    <path d="M7 7h10"></path>
+                    <path d="M17 7l-3-3"></path>
+                    <path d="M17 7l-3 3"></path>
+                    <path d="M17 17H7"></path>
+                    <path d="M7 17l3-3"></path>
+                    <path d="M7 17l3 3"></path>
+                </svg>
+
+                <span>Record Surplus</span>
+
+            </button>
+
+
+            <button
+                class="nav-link"
+                onclick="window.open('manage-resources.html', '_blank')">
+
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V20h-2.5v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1A1.7 1.7 0 0 0 8.1 15a1.7 1.7 0 0 0-1.6-1H6v-2.5h.5a1.7 1.7 0 0 0 1.6-1A1.7 1.7 0 0 0 7.8 9l-.1-.1 1.8-1.8.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.6V5H15v.9a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0-1.6 1z"></path>
+                </svg>
+
+                <span>Manage Resources</span>
+
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="help-box">
+
+                <div class="help-icon">
+                    ?
+                </div>
+
+                <div>
+                    <strong>Need help?</strong>
+                    <span>Check your activity</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+            <div>
+
+                <p class="overline">
+                    BUSINESS OVERVIEW
+                </p>
+
+                <h1>
+                    Good morning
+                </h1>
+
+                <p class="header-text">
+                    A simple view of today's food flow and supply.
+                </p>
+
+            </div>
+
+
+            <div class="date-box">
+
+                <span>
+                    Today
+                </span>
+
+                <strong id="today">
+                    --
+                </strong>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <p class="hero-label">
+                    TODAY'S FOOD FLOW
+                </p>
+
+                <h2>
+                    Make every meal count.
+                </h2>
+
+                <p>
+                    Track what is prepared, what reaches customers,
+                    and what remains for further action.
+                </p>
+
+                <button
+                    class="hero-button"
+                    onclick="window.open('business-management.html', '_blank')">
+
+                    Open food records
+
+                    <span>
+                        →
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <div class="hero-visual">
+
+                <img
+                    src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=85"
+                    alt="Fresh prepared food">
+
+            </div>
+
+        </section>
+
+
+
+        <!-- STATS -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <span>
+                        Prepared
+                    </span>
+
+                    <div class="stat-icon">
+
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 3v7"></path>
+                            <path d="M9 3v7"></path>
+                            <path d="M12 3v7"></path>
+                            <path d="M9 10v11"></path>
+                            <path d="M18 3v18"></path>
+                        </svg>
+
+                    </div>
+
+                </div>
+
+                <strong id="prepared">
+                    0
+                </strong>
+
+                <span class="unit">
+                    meals today
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <span>
+                        Sold
+                    </span>
+
+                    <div class="stat-icon">
+
+                        <svg viewBox="0 0 24 24">
+                            <path d="M5 12h14"></path>
+                            <path d="M13 6l6 6-6 6"></path>
+                        </svg>
+
+                    </div>
+
+                </div>
+
+                <strong id="sold">
+                    0
+                </strong>
+
+                <span class="unit">
+                    meals today
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <span>
+                        Remaining
+                    </span>
+
+                    <div class="stat-icon">
+
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 7h16"></path>
+                            <path d="M6 7l1 13h10l1-13"></path>
+                            <path d="M9 7V4h6v3"></path>
+                        </svg>
+
+                    </div>
+
+                </div>
+
+                <strong id="remaining">
+                    0
+                </strong>
+
+                <span class="unit">
+                    meals to review
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- LOWER GRID -->
+
+        <section class="content-grid">
+
+
+            <!-- PRODUCE -->
+
+            <div class="card produce-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <p class="overline">
+                            LOCAL SUPPLY
+                        </p>
+
+                        <h2>
+                            Nearby produce
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        class="text-button"
+                        onclick="window.open('local-produce.html', '_blank')">
+
+                        View all →
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="produceList"
+                    class="produce-list">
+
+                    <div class="loading">
+                        Loading produce...
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SURPLUS -->
+
+            <div class="card surplus-card">
+
+                <div class="surplus-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=900&q=85"
+                        alt="Fresh food that can still be useful">
+
+                    <div class="image-tag">
+                        FOOD RECOVERY
+                    </div>
+
+                </div>
+
+
+                <div class="surplus-content">
+
+                    <p class="overline">
+                        SURPLUS REVIEW
+                    </p>
+
+                    <h2>
+                        Leftover food may still have value.
+                    </h2>
+
+                    <p>
+                        Review remaining meals before deciding
+                        whether they can be redistributed or used.
+                    </p>
+
+
+                    <div class="surplus-row">
+
+                        <div>
+
+                            <strong id="foodReview">
+                                0
+                            </strong>
+
+                            <span>
+                                meals to review
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            onclick="window.open('record-surplus.html', '_blank')">
+
+                            Review
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- INSIGHT -->
+
+        <section class="insight">
+
+            <div class="insight-copy">
+
+                <p class="overline">
+                    DEMAND INSIGHT
+                </p>
+
+                <h2>
+                    Understand your usual demand.
+                </h2>
+
+                <p id="demandText">
+                    Add food records to build a useful picture
+                    of your average daily demand.
+                </p>
+
+            </div>
+
+
+            <div class="demand-number">
+
+                <strong id="averageDemand">
+                    --
+                </strong>
+
+                <span>
+                    average meals sold
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ACTIONS -->
+
+        <section class="actions-section">
+
+            <div class="card-header">
+
+                <div>
+
+                    <p class="overline">
+                        QUICK ACTIONS
+                    </p>
+
+                    <h2>
+                        What would you like to do?
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="actions">
+
+
+                <!-- LOCAL PRODUCE -->
+
+                <button
+                    onclick="window.open('local-produce.html', '_blank')">
+
+                    <div class="action-icon">
+
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 21c-4-3-7-6.5-7-11 0-3 2-5 5-5 1.2 0 2.2.5 3 1.4C13.8 5.5 14.8 5 16 5c3 0 5 2 5 5 0 4.5-3 8-7 11"></path>
+                            <path d="M12 20V9"></path>
+                        </svg>
+
+                    </div>
+
+                    <span>
+                        Find Local Produce
+                    </span>
+
+                    <b>
+                        →
+                    </b>
+
+                </button>
+
+
+
+                <!-- FOOD RECORDS -->
+
+                <button
+                    onclick="window.open('business-management.html', '_blank')">
+
+                    <div class="action-icon">
+
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 3v7"></path>
+                            <path d="M9 3v7"></path>
+                            <path d="M12 3v7"></path>
+                            <path d="M9 10v11"></path>
+                            <path d="M18 3v18"></path>
+                        </svg>
+
+                    </div>
+
+                    <span>
+                        Food Records
+                    </span>
+
+                    <b>
+                        →
+                    </b>
+
+                </button>
+
+
+
+                <!-- RECORD SURPLUS -->
+
+                <button
+                    onclick="window.open('record-surplus.html', '_blank')">
+
+                    <div class="action-icon">
+
+                        <svg viewBox="0 0 24 24">
+                            <path d="M7 7h10"></path>
+                            <path d="M17 7l-3-3"></path>
+                            <path d="M17 7l-3 3"></path>
+                            <path d="M17 17H7"></path>
+                            <path d="M7 17l3-3"></path>
+                            <path d="M7 17l3 3"></path>
+                        </svg>
+
+                    </div>
+
+                    <span>
+                        Record Surplus
+                    </span>
+
+                    <b>
+                        →
+                    </b>
+
+                </button>
+
+
+
+                <!-- MANAGE RESOURCES -->
+
+                <button
+                    onclick="window.open('manage-resources.html', '_blank')">
+
+                    <div class="action-icon">
+
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19 15a2 2 0 0 0 .3 2l-2 2a2 2 0 0 0-2-.3 2 2 0 0 0-1.3 1.8v.3h-3v-.3a2 2 0 0 0-1.3-1.8 2 2 0 0 0-2 .3l-2-2a2 2 0 0 0 .3-2A2 2 0 0 0 5.2 14H5v-3h.2A2 2 0 0 0 7 9.7a2 2 0 0 0-.3-2l2-2a2 2 0 0 0 2 .3A2 2 0 0 0 12 4.2V4h3v.2A2 2 0 0 0 16.3 6a2 2 0 0 0 2-.3l2 2a2 2 0 0 0-.3 2 2 0 0 0 1.8 1.3h.2v3h-.2A2 2 0 0 0 19 15z"></path>
+                        </svg>
+
+                    </div>
+
+                    <span>
+                        Manage Resources
+                    </span>
+
+                    <b>
+                        →
+                    </b>
+
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- MOBILE NAV -->
+
+    <nav class="mobile-nav">
+
+        <button class="mobile-active">
+
+            <span>
+                ⌂
+            </span>
+
+            <small>
+                Home
+            </small>
+
+        </button>
+
+
+        <button
+            onclick="window.open('local-produce.html', '_blank')">
+
+            <span>
+                ⌁
+            </span>
+
+            <small>
+                Produce
+            </small>
+
+        </button>
+
+
+        <button
+            onclick="window.open('business-management.html', '_blank')">
+
+            <span>
+                ≡
+            </span>
+
+            <small>
+                Records
+            </small>
+
+        </button>
+
+
+        <button
+            onclick="window.open('record-surplus.html', '_blank')">
+
+            <span>
+                ↻
+            </span>
+
+            <small>
+                Surplus
+            </small>
+
+        </button>
+
+    </nav>
+
+
+    <div id="toast"></div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
