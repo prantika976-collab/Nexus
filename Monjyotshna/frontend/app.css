@@ -1,0 +1,1694 @@
+/* MEGHA - Farmer Dashboard */
+
+:root {
+  --green: #426b4a;
+  --dark-green: #2f5237;
+  --sage: #dfe9dc;
+  --soft-green: #edf3e9;
+  --beige: #f5f0e6;
+  --cream: #fffdf8;
+  --white: #ffffff;
+  --brown: #806b50;
+  --text: #354238;
+  --muted: #7b837a;
+  --border: #e1ddd2;
+  --shadow: 0 8px 24px rgba(52, 67, 54, 0.07);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--beige);
+  color: var(--text);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* =========================
+   MAIN APP LAYOUT
+   ========================= */
+
+.megha-app {
+  min-height: 100vh;
+  display: flex;
+}
+
+/* =========================
+   SIDEBAR
+   ========================= */
+
+.megha-sidebar {
+  width: 230px;
+  min-height: 100vh;
+  background: var(--dark-green);
+  color: white;
+  padding: 28px 18px;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+}
+
+.megha-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px 30px;
+}
+
+.megha-logo .logo-icon {
+  position: static;
+  margin: 0;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.megha-logo h2 {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.logo-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+}
+
+.megha-logo h2 {
+  margin: 0;
+  font-size: 21px;
+  letter-spacing: 0.2px;
+}
+
+.megha-logo p {
+  margin: 3px 0 0;
+  font-size: 11px;
+  opacity: 0.65;
+}
+
+.megha-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.nav-item {
+  width: 100%;
+  padding: 12px 13px;
+  border-radius: 11px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.75);
+  text-align: left;
+  font-size: 14px;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+}
+
+.nav-item span {
+  margin-left: 8px;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  padding: 15px 8px 5px;
+  font-size: 11px;
+  opacity: 0.55;
+}
+
+/* =========================
+   MAIN CONTENT
+   ========================= */
+
+.megha-main {
+  flex: 1;
+  min-width: 0;
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 30px 38px 55px;
+}
+
+/* =========================
+   HEADER
+   ========================= */
+
+.megha-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.header-small {
+  margin: 0 0 5px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  color: var(--brown);
+}
+
+.megha-header h1 {
+  margin: 0;
+  color: var(--dark-green);
+  font-size: 30px;
+  line-height: 1.2;
+}
+
+.header-location {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.profile-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--sage);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+}
+
+/* =========================
+   FARM HERO
+   ========================= */
+
+.farm-hero {
+  min-height: 190px;
+  border-radius: 22px;
+  padding: 28px 32px;
+  margin-bottom: 18px;
+  background:
+    linear-gradient(
+      105deg,
+      #dfeadd 0%,
+      #e9f0e5 55%,
+      #e4ece0 100%
+    );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.farm-hero-text {
+  max-width: 570px;
+}
+
+.hero-label {
+  margin: 0 0 7px;
+  color: var(--brown);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+.farm-hero h2 {
+  margin: 0;
+  color: var(--dark-green);
+  font-size: 27px;
+}
+
+.farm-hero p:not(.hero-label) {
+  margin: 7px 0 13px;
+  color: #617062;
+  font-size: 14px;
+}
+
+.farm-hero button {
+  background: var(--green);
+  color: white;
+  padding: 10px 17px;
+  border-radius: 9px;
+  font-size: 13px;
+}
+
+.farm-hero button:hover {
+  background: var(--dark-green);
+}
+
+.farm-hero-illustration {
+  font-size: 78px;
+  opacity: 0.65;
+  white-space: nowrap;
+  transform: translateY(8px);
+}
+
+.farm-hero-illustration span {
+  font-size: 34px;
+  margin-left: -5px;
+}
+
+/* =========================
+   QUICK STATS
+   ========================= */
+
+.quick-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.quick-stat {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 15px 17px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.quick-stat > span {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: var(--soft-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+}
+
+.quick-stat p {
+  margin: 0 0 3px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.quick-stat strong {
+  color: var(--dark-green);
+  font-size: 15px;
+}
+
+/* =========================
+   CARD GRID
+   ========================= */
+
+.megha-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 17px;
+}
+
+.megha-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 21px 22px;
+  min-width: 0;
+  box-shadow: var(--shadow);
+}
+
+.megha-card h2 {
+  margin: 0;
+  color: var(--dark-green);
+  font-size: 20px;
+}
+
+.card-label {
+  margin: 0 0 6px;
+  color: var(--brown);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+}
+
+.card-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.status-badge {
+  background: var(--soft-green);
+  color: var(--green);
+  border-radius: 20px;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* =========================
+   CURRENT CROP
+   ========================= */
+
+.current-crop-card {
+  grid-row: span 2;
+}
+
+.crop-details-grid {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.crop-details-grid div {
+  background: #f8f5ed;
+  border: 1px solid #ebe5d8;
+  border-radius: 12px;
+  padding: 15px 14px;
+}
+
+.crop-details-grid span,
+.progress-item span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.crop-details-grid strong {
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.card-action {
+  margin-top: 20px;
+  padding: 10px 15px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: var(--green);
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.card-action:hover {
+  background: var(--dark-green);
+}
+
+.card-action.secondary {
+  background: var(--soft-green);
+  color: var(--dark-green);
+  border-color: #dce8d7;
+}
+
+.card-action.secondary:hover {
+  background: var(--sage);
+}
+
+/* =========================
+   WEATHER
+   ========================= */
+
+.weather-main {
+  margin-top: 19px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.weather-main strong {
+  color: var(--dark-green);
+  font-size: 34px;
+}
+
+.weather-main span {
+  color: var(--muted);
+  font-size: 13px;
+  text-transform: capitalize;
+}
+
+.weather-info {
+  display: flex;
+  gap: 18px;
+  margin-top: 15px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* =========================
+   SOIL
+   ========================= */
+
+.health-status {
+  margin: 18px 0 13px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--green);
+}
+
+.health-status span {
+  font-size: 12px;
+}
+
+.health-status strong {
+  font-size: 14px;
+}
+
+.megha-card > p:not(.card-label) {
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 8px 0;
+}
+
+/* =========================
+   WATER
+   ========================= */
+
+.water-status {
+  margin: 20px 0 16px;
+  padding: 16px 18px;
+  background: #f8f5ed;
+  border: 1px solid #ebe5d8;
+  border-radius: 12px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.water-status strong {
+  color: var(--dark-green);
+  font-size: 21px;
+}
+
+.water-status span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* =========================
+   RESOURCES
+   ========================= */
+
+.resources-card {
+  grid-column: 1 / -1;
+}
+
+.resource-icon {
+  font-size: 22px;
+}
+
+.resource-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 15px 14px;
+  border-bottom: 1px solid #ece8df;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+.resource-row:hover {
+  background: #faf8f2;
+}
+
+.resource-row:last-of-type {
+  border-bottom: none;
+}
+
+.resource-row div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.resource-row div strong {
+  color: var(--text);
+  font-size: 13px;
+}
+
+.resource-row span {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.resource-row > strong {
+  flex-shrink: 0;
+  color: var(--green);
+  font-size: 13px;
+}
+
+/* =========================
+   PROGRESS
+   ========================= */
+
+.progress-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #ece8df;
+}
+
+.progress-item strong {
+  color: var(--text);
+  font-size: 13px;
+}
+
+/* =========================
+   LEARNING
+   ========================= */
+
+.learning-card {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 125px 1fr;
+  gap: 20px;
+  align-items: center;
+  background: #f1f5ed;
+}
+
+.learning-image {
+  min-height: 110px;
+  border-radius: 15px;
+  background: #dce8d7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 52px;
+}
+
+.learning-card p:not(.card-label) {
+  max-width: 650px;
+  color: #68736a;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.learning-tip {
+  margin-top: 12px;
+  padding: 12px 14px;
+  background: var(--cream);
+  border-radius: 11px;
+  color: var(--text);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* =========================
+   FARM PROFILE
+   ========================= */
+
+.farm-profile-strip {
+  margin-top: 18px;
+  padding: 20px 22px;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.farm-profile-strip h2 {
+  margin: 0;
+  color: var(--dark-green);
+  font-size: 19px;
+}
+
+.farm-profile-strip p:not(.card-label) {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.farm-profile-strip button {
+  background: var(--soft-green);
+  color: var(--dark-green);
+  padding: 10px 15px;
+  border-radius: 9px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* =========================
+   FORMS / DETAIL PAGES
+   ========================= */
+
+#root > div:not(.megha-app) {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 35px 25px 55px;
+}
+
+#root > div:not(.megha-app) h1 {
+  color: var(--dark-green);
+  margin: 0 0 10px;
+  font-size: 30px;
+  line-height: 1.25;
+}
+
+#root > div:not(.megha-app) > p {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.dashboard-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 28px;
+  margin-top: 22px;
+  box-shadow: 0 6px 20px rgba(52, 67, 54, 0.06);
+}
+
+.dashboard-card h2 {
+  color: var(--dark-green);
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+/* Form field spacing */
+.dashboard-card label {
+  display: block;
+  margin-top: 18px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--dark-green);
+  font-size: 13px;
+}
+
+.dashboard-card input,
+.dashboard-card select,
+.dashboard-card textarea {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 11px 12px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--white);
+  color: var(--text);
+  outline: none;
+}
+
+.dashboard-card input:focus,
+.dashboard-card select:focus,
+.dashboard-card textarea:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 2px rgba(66, 107, 74, 0.08);
+}
+
+.dashboard-card textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Keep form buttons separated */
+.dashboard-card button {
+  margin-top: 20px;
+  margin-right: 8px;
+  background: var(--green);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 9px;
+}
+
+.dashboard-card button:hover {
+  background: var(--dark-green);
+}
+
+@media (max-width: 950px) {
+  .megha-sidebar {
+    width: 190px;
+  }
+
+  .megha-main {
+    padding: 25px 22px 45px;
+  }
+
+  .megha-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .current-crop-card,
+  .resources-card,
+  .learning-card {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .megha-app {
+    display: block;
+  }
+
+  .megha-sidebar {
+    width: 100%;
+    min-height: auto;
+    position: static;
+    padding: 14px 16px;
+  }
+
+  .megha-logo {
+    padding: 3px 4px 12px;
+  }
+
+  .megha-nav {
+    flex-direction: row;
+  }
+
+  .nav-item {
+    text-align: center;
+    padding: 9px 7px;
+  }
+
+  .sidebar-bottom {
+    display: none;
+  }
+
+  .megha-main {
+    padding: 20px 15px 40px;
+  }
+
+  .megha-header h1 {
+    font-size: 24px;
+  }
+
+  .farm-hero {
+    padding: 23px;
+  }
+
+  .farm-hero-illustration {
+    display: none;
+  }
+
+  .quick-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .crop-details-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .learning-card {
+    grid-template-columns: 1fr;
+  }
+
+  .learning-image {
+    min-height: 85px;
+  }
+
+  .farm-profile-strip {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .farm-profile-strip button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 450px) {
+  .megha-header {
+    align-items: flex-start;
+  }
+
+  .profile-circle {
+    width: 42px;
+    height: 42px;
+  }
+
+  .farm-hero h2 {
+    font-size: 23px;
+  }
+
+  .megha-card {
+    padding: 18px;
+  }
+
+  .crop-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .weather-info {
+    flex-direction: column;
+    gap: 7px;
+  }
+}
+
+.resource-suggestion {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.megha-main {
+  flex: 1;
+  min-width: 0;
+  padding: 40px 50px;
+}
+
+.form-page {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.form-page-header {
+  margin-bottom: 28px;
+}
+
+.form-page-header h1 {
+  margin: 0 0 8px;
+  font-size: 30px;
+}
+
+.form-page-header p {
+  margin: 0;
+  color: #666;
+}
+
+.form-page .dashboard-card {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.form-page-header h1 {
+  color: #285c3a;
+}
+.estimated-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.residue-estimate {
+  margin: 14px 0;
+  padding: 14px 16px;
+  background: var(--soft-green);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.residue-estimate strong {
+  font-size: 14px;
+}
+
+.residue-estimate span {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.residue-estimate small {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+/* Screen 4 - Farm Profile spacing */
+
+.form-page .dashboard-card p {
+  margin: 12px 0 !important;
+  line-height: 1.6 !important;
+  display: grid !important;
+  grid-template-columns: 190px minmax(0, 1fr) !important;
+  column-gap: 14px !important;
+  align-items: baseline !important;
+  text-align: left !important;
+}
+
+.form-page .dashboard-card p strong {
+  display: block !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  text-align: right !important;
+}
+
+.form-page .dashboard-card .card-heading {
+  margin-bottom: 18px !important;
+}
+
+.form-page .progress-item {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 20px !important;
+  padding: 12px 0 !important;
+  border-bottom: 1px solid #e5eadf !important;
+}
+
+.form-page .progress-item:last-child {
+  border-bottom: none !important;
+}
+
+.form-page .estimated-label {
+  margin-top: 16px !important;
+  padding: 10px 14px !important;
+  border-radius: 10px !important;
+  background: #f1f6ed !important;
+  color: #5d735c !important;
+  font-size: 14px !important;
+}
+
+.form-page .status-badge {
+  white-space: nowrap !important;
+}
+
+/* =========================
+   SCREEN 4 - FARM PROFILE
+   ========================= */
+
+.farm-profile-page {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding-bottom: 30px;
+}
+
+.farm-profile-section {
+  width: 100%;
+}
+
+.profile-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 22px;
+  margin-top: 8px;
+}
+
+.profile-details-grid > div {
+  padding: 16px 18px;
+  background: #f8f5ed;
+  border: 1px solid #ebe5d8;
+  border-radius: 12px;
+  min-height: 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile-details-grid span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.profile-details-grid strong {
+  display: block;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.4;
+}
+/* SOIL INFORMATION */
+.soil-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 8px;
+}
+.soil-metrics-grid > div {
+  padding: 14px 12px;
+  background: #f8f5ed;
+  border: 1px solid #ebe5d8;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.soil-metrics-grid span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 5px;
+}
+
+.soil-metrics-grid strong {
+  display: block;
+  color: var(--dark-green);
+  font-size: 15px;
+}
+.soil-history-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.soil-history-metrics span {
+  display: inline-block;
+  padding-right: 4px;
+  white-space: nowrap;
+}
+
+.soil-history-metrics span {
+  white-space: nowrap;
+}
+
+.soil-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 16px;
+  border-bottom: 1px solid #e8e5dc;
+}
+
+.soil-metric span,
+.soil-health-box span {
+  font-size: 11px;
+  color: #7b837a;
+  font-weight: 500;
+}
+.soil-health-box {
+  margin-top: 18px;
+  padding: 16px 18px;
+  background: #eef5eb;
+  border: 1px solid #dce8d7;
+  border-radius: 12px;
+}
+
+.soil-health-box strong {
+  display: block;
+  margin-top: 5px;
+  color: var(--dark-green);
+  font-size: 15px;
+}
+.soil-metric strong {
+  font-size: 14px;
+  color: #354238;
+  font-weight: 600;
+}
+
+.soil-health-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 16px;
+  background: #eef5eb;
+  border: 1px solid #d8e6d2;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.soil-health-box strong {
+  font-size: 14px;
+  color: #2f5237;
+  font-weight: 700;
+}
+
+.profile-source {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #e8e5dc;
+  color: #7b837a;
+  font-size: 12px;
+}
+
+.profile-source strong {
+  color: #354238;
+}
+.estimated-label {
+  color: #8a6b2f;
+  font-weight: 600;
+}
+
+.soil-recorded-date {
+  margin: 8px 0 0;
+  color: #8a9088;
+  font-size: 11px;
+}
+
+.soil-empty-state {
+  padding: 20px 0 4px;
+}
+
+.soil-empty-state p {
+  color: #7b837a;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 900px) {
+  .soil-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .soil-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* History sections */
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.history-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 16px 14px;
+  border-bottom: 1px solid #e5eadf;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+.history-row:hover {
+  background: #faf8f2;
+}
+
+.history-row:last-child {
+  border-bottom: none;
+}
+
+.history-row > div:first-child {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.history-row > div:first-child strong {
+  color: var(--text);
+  font-size: 14px;
+}
+
+.history-row > div:first-child span {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.history-value {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: right;
+}
+
+/* Soil image area */
+
+.soil-image-placeholder {
+  padding: 24px 20px;
+  background: #f8f5ed;
+  border: 1px dashed #d8d2c4;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.soil-image-placeholder p {
+  margin: 0 0 8px;
+  color: var(--dark-green);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.soil-image-placeholder small {
+  display: block;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.soil-image-preview {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  max-height: 300px;
+  object-fit: cover;
+  margin: 16px auto 0;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+}
+
+.soil-image-upload {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+/* Mobile Screen 4 */
+
+@media (max-width: 700px) {
+  .farm-profile-page {
+    width: 100%;
+  }
+
+  .profile-details-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .history-row {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .history-value {
+    text-align: right;
+  }
+}
+
+@media (max-width: 450px) {
+  .history-row {
+    flex-direction: column;
+  }
+
+  .history-value {
+    width: 100%;
+    text-align: left;
+  }
+}
+.history-status {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #eef5eb;
+  color: #2f5237;
+  font-size: 11px;
+  font-weight: 700;
+}
+.crop-history-table {
+  margin-top: 14px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.crop-history-header,
+.crop-history-row {
+  display: grid;
+  grid-template-columns: 1fr 1.8fr 0.8fr;
+  gap: 18px;
+  align-items: center;
+}
+
+.crop-history-header {
+  padding: 10px 14px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--border);
+}
+
+.crop-history-row {
+  padding: 15px 14px;
+  border-bottom: 1px solid #e5eadf;
+}
+
+.crop-history-row:last-child {
+  border-bottom: none;
+}
+
+.crop-history-row strong {
+  color: var(--text);
+  font-size: 14px;
+}
+
+.crop-history-row span {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+.harvest-history-list {
+  margin-top: 14px;
+}
+
+.harvest-history-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 15px 14px;
+  border-bottom: 1px solid #e5eadf;
+  border-radius: 10px;
+}
+
+.harvest-history-row:last-child {
+  border-bottom: none;
+}
+
+.harvest-history-row > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.harvest-history-row strong {
+  color: var(--text);
+  font-size: 14px;
+}
+
+.harvest-history-row span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.harvest-history-row .harvest-quantity {
+  flex-shrink: 0;
+  color: var(--green);
+  font-size: 14px;
+}
+.fertilizer-history-list {
+  margin-top: 14px;
+}
+
+.fertilizer-history-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 15px 14px;
+  border-bottom: 1px solid #e5eadf;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+.fertilizer-history-row:hover {
+  background: #faf8f2;
+}
+
+.fertilizer-history-row:last-child {
+  border-bottom: none;
+}
+
+.fertilizer-history-row > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.fertilizer-history-row strong {
+  color: var(--text);
+  font-size: 14px;
+}
+
+.fertilizer-history-row span {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.fertilizer-history-row .fertilizer-quantity {
+  flex-shrink: 0;
+  color: var(--green);
+  font-size: 14px;
+}
+.soil-history-list {
+  margin-top: 14px;
+}
+
+.soil-history-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 14px;
+  border-bottom: 1px solid #e5eadf;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+.soil-history-card:hover {
+  background: #faf8f2;
+}
+
+.soil-history-card:last-child {
+  border-bottom: none;
+}
+
+.soil-history-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.soil-history-main > strong {
+  color: var(--text);
+  font-size: 15px;
+}
+
+.soil-history-main > span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.soil-history-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 10px;
+}
+
+.soil-history-metrics span {
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.soil-history-card .history-status {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.farmer-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 8px;
+}
+
+.farmer-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.farmer-form-field label {
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.farmer-form-field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #f8f5ed;
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.farmer-form-field input::placeholder {
+  color: #a3a79f;
+}
+
+.farmer-form-field input:focus {
+  border-color: #9db39d;
+  background: var(--cream);
+  box-shadow: 0 0 0 3px rgba(66, 107, 74, 0.08);
+}
+
+.farmer-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+@media (max-width: 700px) {
+  .farmer-form-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .farmer-form-actions {
+    justify-content: stretch;
+  }
+
+  .farmer-form-actions .card-action {
+    flex: 1;
+    text-align: center;
+  }
+}
+.farm-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 8px;
+}
+
+.farm-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.farm-form-field label {
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.farm-form-field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #f8f5ed;
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.farm-form-field input::placeholder {
+  color: #a3a79f;
+}
+
+.farm-form-field input:focus {
+  border-color: #9db39d;
+  background: var(--cream);
+  box-shadow: 0 0 0 3px rgba(66, 107, 74, 0.08);
+}
+@media (max-width: 700px) {
+  .farm-form-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .farmer-form-actions {
+    justify-content: stretch;
+  }
+
+  .farmer-form-actions .card-action {
+    flex: 1;
+    text-align: center;
+  }
+}
+.water-form-card {
+  max-width: 760px;
+}
+
+.water-form-card h2 {
+  margin-bottom: 24px;
+}
+
+.water-form-card label {
+  display: block;
+  margin-top: 16px;
+  margin-bottom: 7px;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.water-form-card select,
+.water-form-card textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #f8f5ed;
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.water-form-card select {
+  cursor: pointer;
+}
+
+.water-form-card textarea {
+  min-height: 100px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.water-form-card select:focus,
+.water-form-card textarea:focus {
+  border-color: #9db39d;
+  background: var(--cream);
+  box-shadow: 0 0 0 3px rgba(66, 107, 74, 0.08);
+}
+
+.water-form-card textarea::placeholder {
+  color: #a3a79f;
+}
+
+.water-form-card button {
+  margin-top: 20px;
+  margin-right: 8px;
+}
+@media (max-width: 700px) {
+  .water-form-card {
+    padding: 20px;
+  }
+
+  .water-form-card button {
+    width: 100%;
+    margin-right: 0;
+  }
+}
